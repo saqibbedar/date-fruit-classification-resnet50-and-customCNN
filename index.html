@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Date Fruit Classifier</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f7fb;
+        margin: 0;
+        padding: 40px;
+        color: #222;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: auto;
+        background: white;
+        padding: 30px;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      h1 {
+        margin-top: 0;
+        color: #2b2f38;
+      }
+
+      .subtitle {
+        color: #666;
+        margin-bottom: 25px;
+      }
+
+      .info-box {
+        background: #eef3ff;
+        padding: 15px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        font-size: 14px;
+      }
+
+      form {
+        display: grid;
+        gap: 18px;
+        margin-bottom: 30px;
+      }
+
+      label {
+        font-weight: bold;
+      }
+
+      input[type="file"],
+      input[type="number"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        width: 100%;
+      }
+
+      button {
+        background: #2563eb;
+        color: white;
+        border: none;
+        padding: 12px 18px;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #1d4ed8;
+      }
+
+      .error {
+        background: #ffe8e8;
+        color: #b00020;
+        padding: 14px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+
+      .result {
+        margin-top: 25px;
+        padding: 20px;
+        border-radius: 14px;
+        background: #f8fafc;
+        border: 1px solid #e5e7eb;
+      }
+
+      .accepted {
+        color: #0f9d58;
+        font-weight: bold;
+      }
+
+      .rejected {
+        color: #d93025;
+        font-weight: bold;
+      }
+
+      .preview {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .preview img {
+        max-width: 360px;
+        max-height: 360px;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 18px;
+      }
+
+      th,
+      td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+      }
+
+      th {
+        background: #f1f5f9;
+      }
+
+      .classes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .class-pill {
+        background: #f1f5f9;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 13px;
+      }
+
+      .note {
+        margin-top: 20px;
+        background: #fff7ed;
+        padding: 14px;
+        border-radius: 10px;
+        color: #7c2d12;
+        font-size: 14px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 38px;
+      }
+
+      @media (max-width: 700px) {
+        .grid {
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+
+        body {
+          padding: 15px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Date Fruit Classification</h1>
+
+      <p class="subtitle">
+        Upload an image and classify it using your fine-tuned ResNet-50 model.
+      </p>
+
+      <div class="info-box">
+        <strong>Device:</strong> {{ device }} <br />
+        <strong>GPU/CPU:</strong> {{ gpu_name }} <br />
+        <strong>Checkpoint stage:</strong> {{ checkpoint_stage }} <br />
+        <strong>Validation accuracy:</strong> {{ val_accuracy }}
+      </div>
+
+      <form method="POST" enctype="multipart/form-data">
+        <div>
+          <label>Upload Image</label>
+          <input type="file" name="image" accept="image/*" required />
+        </div>
+
+        <div class="grid">
+          <div>
+            <label>Confidence Threshold</label>
+            <input
+              type="number"
+              name="threshold"
+              min="0"
+              max="1"
+              step="0.01"
+              value="{{ default_threshold }}"
+            />
+          </div>
+
+          <div>
+            <label>Top-K Predictions</label>
+            <input
+              type="number"
+              name="top_k"
+              min="1"
+              max="10"
+              value="{{ default_top_k }}"
+            />
+          </div>
+        </div>
+
+        <button type="submit">Predict Image</button>
+      </form>
+
+      <h3>Known Classes</h3>
+
+      <div class="classes">
+        {% for class_name in classes %}
+        <span class="class-pill">{{ class_name }}</span>
+        {% endfor %}
+      </div>
+
+      {% if error %}
+      <div class="error">{{ error }}</div>
+      {% endif %} {% if image_url %}
+      <div class="preview">
+        <h3>Uploaded Image</h3>
+        <img src="{{ image_url }}" alt="Uploaded image" />
+      </div>
+      {% endif %} {% if result %}
+      <div class="result">
+        <h2>Prediction Result</h2>
+
+        <p>
+          <strong>Predicted Class:</strong>
+          {{ result.predicted_class }}
+        </p>
+
+        <p>
+          <strong>Confidence:</strong>
+          {{ "%.2f"|format(result.confidence_percent) }}%
+        </p>
+
+        <p>
+          <strong>Threshold:</strong>
+          {{ "%.2f"|format(result.threshold_percent) }}%
+        </p>
+
+        {% if result.decision_type == "accepted" %}
+        <p class="accepted">Decision: {{ result.decision_text }}</p>
+
+        {% elif result.decision_type == "uncertain_date_class" %}
+        <p class="rejected">Decision: {{ result.decision_text }}</p>
+        <p>
+          The image appears date-like, but the model is not confident enough
+          about the exact variety.
+        </p>
+
+        {% else %}
+        <p class="rejected">Decision: {{ result.decision_text }}</p>
+        <p>
+          The image does not match the controlled date-image style expected by
+          this model.
+        </p>
+        {% endif %}
+
+        <h3>Input Quality Check</h3>
+
+        <table>
+          <tbody>
+            <tr>
+              <td>White Background Ratio</td>
+              <td>
+                {{ "%.2f"|format(result.precheck.white_background_ratio * 100)
+                }}%
+              </td>
+            </tr>
+
+            <tr>
+              <td>Object Ratio</td>
+              <td>{{ "%.2f"|format(result.precheck.object_ratio * 100) }}%</td>
+            </tr>
+
+            <tr>
+              <td>Date-like Color Ratio</td>
+              <td>
+                {{ "%.2f"|format(result.precheck.date_color_ratio * 100) }}%
+              </td>
+            </tr>
+
+            <tr>
+              <td>Precheck Result</td>
+              <td>{{ result.precheck.reason }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Top Predictions</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Confidence</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for item in result.top_predictions %}
+            <tr>
+              <td>{{ item.class_name }}</td>
+              <td>{{ "%.2f"|format(item.confidence_percent) }}%</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        <div class="note">
+          A standard classifier always predicts one of the known classes. The
+          threshold only helps reject low-confidence predictions. It is not a
+          perfect unknown-object detector.
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
