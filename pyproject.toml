@@ -1,0 +1,25 @@
+[project]
+name = "Date fruit classification"
+version = "0.0.0"
+description = "A computer vision project to classify different types of date fruits using deep learning techniques."
+authors = [
+    { name="Saqib Bedar", email=null, github="https://github.com/saqibbedar" },
+    { name="Hamza Khan Tariq", email=null, github=null }
+]
+
+[dependencies]
+python = "3.12"
+pip = "26.1.2"
+torch = "2.11.0+cu128"
+torchvision = "0.26.0+cu128"
+torchaudio = "2.11.0+cu128"
+ipykernel = "7.2.0"
+numpy = "2.4.4"
+flask = "3.1.3"
+pillow = "12.2.0"
+
+[tool.project]
+model = "ResNet-50"
+framework = "PyTorch"
+task = "Multiclass image classification"
+classes = 10
