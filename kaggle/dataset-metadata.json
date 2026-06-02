@@ -1,0 +1,24 @@
+{
+  "title": "Date Fruit Classification ResNet50",
+  "subtitle": "10-class date fruit dataset with PyTorch ResNet-50 checkpoints and source code",
+  "description": "A complete academic computer vision project for 10-class date fruit image classification using ResNet-50 transfer learning. This Kaggle package includes 7,000 date fruit images across 10 classes, split manifests, trained PyTorch checkpoints, source code, a Jupyter notebook, and a Flask inference app. Project authors/maintainers: Saqib Bedar and Hamza Khan Tariq. Image rights disclaimer: the images were collected from publicly available internet sources for an academic semester project. The project authors do not claim ownership of the original images. All rights remain with their respective owners. Shared for educational and research purposes only. GitHub documentation: https://github.com/saqibbedar/date-fruit-classification-resnet50",
+  "id": "saqibbedar/date-fruit-classification-resnet50",
+  "licenses": [
+    {
+      "name": "unknown"
+    }
+  ],
+  "keywords": [
+    "computer vision",
+    "image classification",
+    "deep learning",
+    "pytorch",
+    "resnet50",
+    "transfer learning",
+    "agriculture",
+    "fruit",
+    "dates",
+    "flask"
+  ],
+  "expectedUpdateFrequency": "never"
+}
