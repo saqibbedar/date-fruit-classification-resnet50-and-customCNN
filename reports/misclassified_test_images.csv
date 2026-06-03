@@ -1,0 +1,66 @@
+index,image_path,true_class,pred_class,confidence
+121,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Aseel\Aseel (80).jpg,Aseel,Fasli-Toto,0.527122974395752
+225,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Fasli-Toto\Fasil_Toto (36).jpg,Fasli-Toto,Aseel,0.6888411045074463
+318,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\Galaxy Date (101).JPG,Galaxy,Sugaey,0.4828944206237793
+326,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\Galaxy Date (154).JPG,Galaxy,Meneifi,0.4385424256324768
+340,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\aug_227.jpg,Galaxy,Sokari,0.6873186230659485
+343,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\aug_248.jpg,Galaxy,Meneifi,0.6517044901847839
+351,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\aug_298.jpg,Galaxy,Medjool,0.7053565382957458
+353,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\aug_314.jpg,Galaxy,Meneifi,0.4971289038658142
+356,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\aug_363.jpg,Galaxy,Sugaey,0.5722619295120239
+366,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\aug_428.jpg,Galaxy,Sugaey,0.9540804028511047
+378,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\aug_584.jpg,Galaxy,Sokari,0.5181927680969238
+379,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\aug_597.jpg,Galaxy,Medjool,0.8369680047035217
+380,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\aug_604.jpg,Galaxy,Medjool,0.7431634068489075
+388,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\aug_639.jpg,Galaxy,Medjool,0.7921465635299683
+390,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\aug_669.jpg,Galaxy,Meneifi,0.8757340908050537
+399,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\aug_771.jpg,Galaxy,Medjool,0.5534238815307617
+404,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\aug_819.jpg,Galaxy,Medjool,0.6661766767501831
+414,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\aug_928.jpg,Galaxy,Medjool,0.505901038646698
+415,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\aug_945.jpg,Galaxy,Medjool,0.8243727087974548
+422,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Galaxy\aug_994.jpg,Galaxy,Medjool,0.6562737226486206
+532,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\Meneifi Date (114).JPG,Meneifi,Medjool,0.9922398328781128
+533,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\Meneifi Date (117).JPG,Meneifi,Sugaey,0.7522367238998413
+534,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\Meneifi Date (125).JPG,Meneifi,Medjool,0.6907398104667664
+540,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\Meneifi Date (192).JPG,Meneifi,Medjool,0.7125102281570435
+549,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\Meneifi Date (48).JPG,Meneifi,Sugaey,0.9177325963973999
+550,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\Meneifi Date (49).JPG,Meneifi,Sugaey,0.6500462293624878
+554,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_246.jpg,Meneifi,Medjool,0.9236122965812683
+555,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_248.jpg,Meneifi,Medjool,0.8945620656013489
+557,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_264.jpg,Meneifi,Sugaey,0.7305042743682861
+569,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_347.jpg,Meneifi,Sugaey,0.39006078243255615
+570,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_352.jpg,Meneifi,Sugaey,0.9530661702156067
+571,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_366.jpg,Meneifi,Medjool,0.7544589042663574
+578,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_422.jpg,Meneifi,Galaxy,0.41589727997779846
+581,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_447.jpg,Meneifi,Sugaey,0.6623339653015137
+582,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_448.jpg,Meneifi,Nabtat-Ali,0.7146944999694824
+584,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_475.jpg,Meneifi,Shaishe,0.4388781487941742
+585,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_497.jpg,Meneifi,Sugaey,0.6720882058143616
+586,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_519.jpg,Meneifi,Sugaey,0.9604752063751221
+592,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_575.jpg,Meneifi,Sugaey,0.3799271285533905
+597,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_625.jpg,Meneifi,Sugaey,0.6471346020698547
+599,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_634.jpg,Meneifi,Nabtat-Ali,0.593497633934021
+603,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_658.jpg,Meneifi,Sugaey,0.5898978114128113
+609,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_748.jpg,Meneifi,Galaxy,0.47393494844436646
+610,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_760.jpg,Meneifi,Medjool,0.44417667388916016
+612,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_782.jpg,Meneifi,Galaxy,0.8826215267181396
+613,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_783.jpg,Meneifi,Sugaey,0.5284607410430908
+615,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_786.jpg,Meneifi,Medjool,0.5872418284416199
+618,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_799.jpg,Meneifi,Medjool,0.5549684762954712
+627,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_911.jpg,Meneifi,Sokari,0.5556865930557251
+628,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_919.jpg,Meneifi,Sugaey,0.5279152989387512
+629,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_946.jpg,Meneifi,Sugaey,0.6096575856208801
+635,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Meneifi\aug_987.jpg,Meneifi,Sokari,0.2666226923465729
+661,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Nabtat-Ali\aug_277.jpg,Nabtat-Ali,Sugaey,0.9585084319114685
+669,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Nabtat-Ali\aug_337.jpg,Nabtat-Ali,Sokari,0.7066294550895691
+862,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Sokari\Sokari Date (194).JPG,Sokari,Sugaey,0.6183159947395325
+870,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Sokari\Sokari Date (30).JPG,Sokari,Sugaey,0.40688180923461914
+891,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Sokari\aug_439.jpg,Sokari,Sugaey,0.9011815786361694
+892,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Sokari\aug_440.jpg,Sokari,Galaxy,0.5933217406272888
+896,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Sokari\aug_518.jpg,Sokari,Sugaey,0.5785266160964966
+907,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Sokari\aug_593.jpg,Sokari,Shaishe,0.503312349319458
+923,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Sokari\aug_679.jpg,Sokari,Sugaey,0.595391035079956
+948,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Sokari\aug_964.jpg,Sokari,Galaxy,0.744811475276947
+953,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Sokari\aug_994.jpg,Sokari,Nabtat-Ali,0.5212931632995605
+955,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Sugaey\Sugaey Date (124).JPG,Sugaey,Galaxy,0.3641364276409149
+956,c:\Users\PC\Desktop\ai-ml\cv-project\datasets\test\Sugaey\Sugaey Date (125).JPG,Sugaey,Medjool,0.6015201807022095
