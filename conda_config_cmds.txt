@@ -1,0 +1,22 @@
+# Conda cheat sheet
+
+# 1) Create a named environment
+conda create -n ai-ml-gpu python=3.12 -y
+
+# 3) Activate / deactivate
+conda activate ai-ml-gpu
+
+conda deactivate
+
+# 4) Delete environments
+conda env remove -n ai-ml-gpu
+
+# 5) Install GPU PyTorch in the active env
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+
+# 6) Verify Python + CUDA
+python --version
+python -c "import torch; print(torch.__version__); print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0))"
+
+# 7) If conda is not recognized in PowerShell
+C:\Users\PC\miniconda3\Scripts\conda.exe init powershell        # (C:\Users\PC\miniconda3\shell\condabin\conda-hook.ps1) 

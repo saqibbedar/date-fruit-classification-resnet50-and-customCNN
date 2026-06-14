@@ -26,7 +26,6 @@ Thumbs.db
 .idea/
 
 # Extras
-config_cmds.txt
 kaggle_upload
 testing
 report.html
