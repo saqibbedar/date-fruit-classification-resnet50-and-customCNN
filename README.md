@@ -1,9 +1,17 @@
-# Date Fruit Classification using ResNet-50
+# Date Fruit Classification using ResNet-50 and Custom CNN
 
-![Thumbnail](./assets/thumbnail.png)
+![Thumbnail](./assets/thumbnailv2.jpg)
 
-A computer vision project for classifying date fruit varieties using **ResNet-50 transfer learning** with **PyTorch**.
-The project includes model training, fine-tuning, evaluation, confusion matrix analysis, and a simple **Flask web application** for image upload and prediction.
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?logo=github)](https://github.com/saqibbedar/date-fruit-classification-resnet50)
+[![Kaggle](https://img.shields.io/badge/Kaggle-Dataset-20BEFF?logo=kaggle\&logoColor=white)](https://www.kaggle.com/datasets/saqibbedar/date-fruit-classification-resnet50)
+![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python\&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-Deep%20Learning-EE4C2C?logo=pytorch\&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-Web%20App-000000?logo=flask\&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Academic%20Project-brightgreen)
+
+A computer vision project for classifying date fruit varieties using **ResNet-50 transfer learning** and a **custom CNN model trained from scratch** with **PyTorch**.
+
+The project includes dataset preparation, model training, fine-tuning, custom model comparison, evaluation, confusion matrix analysis, and a simple **Flask web application** for image upload and prediction.
 
 ## Project Overview
 
@@ -20,14 +28,25 @@ This project classifies date fruit images into 10 varieties:
 * Sokari
 * Sugaey
 
-The model was trained using transfer learning with a pretrained ResNet-50 backbone.
-The final classifier layer was replaced to predict 10 date fruit classes.
+The main model uses **ResNet-50 transfer learning** with ImageNet pretrained weights. The original ResNet-50 classifier was replaced with a new 10-class classifier for date fruit classification.
+
+A second model, **CustomDateCNN**, was also trained from scratch without pretrained weights. This model was added as a comparison baseline to understand the difference between transfer learning and a simple custom convolutional neural network.
+
+## Project Objective
+
+The objective of this project is to develop a computer vision-based date fruit classification system that can identify different date varieties from images.
+
+The project demonstrates a complete machine learning workflow, including dataset preparation, model training, evaluation, comparison between a pretrained ResNet-50 model and a custom CNN model, and deployment through a simple web application.
+
+This work shows how deep learning can support agricultural image classification tasks such as fruit sorting, labeling, variety identification, and quality inspection.
 
 ## Features
 
 * ResNet-50 transfer learning
 * Frozen-backbone baseline training
 * Fine-tuning of ResNet `layer4`
+* Custom CNN model trained from scratch
+* Comparison between pretrained and non-pretrained models
 * Train/validation/test split
 * Image preprocessing and augmentation
 * Confusion matrix evaluation
@@ -35,6 +54,7 @@ The final classifier layer was replaced to predict 10 date fruit classes.
 * Flask web app for image upload and prediction
 * Confidence thresholding
 * Basic date-like image precheck for rejecting obvious non-date inputs
+* Kaggle dataset and project package
 
 ## Dataset
 
@@ -55,12 +75,15 @@ Dataset split:
 * 15% validation
 * 15% testing
 
-## Model
+## Model 1: ResNet-50 Transfer Learning
 
 Architecture:
 
 * Backbone: ResNet-50
 * Pretrained weights: ImageNet
+* Transfer learning: Yes
+* Input size: 224 × 224 RGB image
+* Original classifier: `Linear(2048, 1000)`
 * Modified classifier head:
 
 ```python
@@ -71,13 +94,106 @@ Linear(2048, 10)
 Training strategy:
 
 1. Freeze ResNet-50 backbone and train only the classifier head.
-2. Load the best frozen model.
-3. Unfreeze `layer4` and classifier head.
-4. Fine-tune with smaller learning rates.
+2. Save the best frozen-backbone model.
+3. Load the best frozen model.
+4. Unfreeze ResNet `layer4` and classifier head.
+5. Fine-tune with smaller learning rates.
+
+### ResNet-50 Metadata
+
+| Item                         | Value                                    |
+| ---------------------------- | ---------------------------------------- |
+| Model name                   | ResNet-50 Fine-Tuned Model               |
+| Framework                    | PyTorch / Torchvision                    |
+| Pretrained                   | Yes                                      |
+| Pretrained dataset           | ImageNet                                 |
+| Transfer learning            | Yes                                      |
+| Number of classes            | 10                                       |
+| Input size                   | 224 × 224                                |
+| Classifier head              | Dropout + Linear(2048 → 10)              |
+| Loss function                | CrossEntropyLoss                         |
+| Optimizer                    | AdamW                                    |
+| Weight decay                 | 0.0001                                   |
+| Scheduler                    | ReduceLROnPlateau                        |
+| Stage 1 trainable parameters | 20,490                                   |
+| Stage 2 trainable parameters | 14,985,226                               |
+| Total parameters             | 23,528,522                               |
+| Final checkpoint             | `checkpoints/best_resnet50_finetuned.pt` |
+
+## Model 2: CustomDateCNN From Scratch
+
+The second model is a simple custom CNN trained from scratch. It does not use ImageNet, pretrained weights, or transfer learning.
+
+This model was created to compare a lightweight custom architecture with the ResNet-50 transfer learning approach.
+
+Architecture:
+
+```text
+Input Image: 3 × 128 × 128
+
+Block 1:
+Conv2d(3 → 32), BatchNorm, ReLU, MaxPool
+
+Block 2:
+Conv2d(32 → 64), BatchNorm, ReLU, MaxPool
+
+Block 3:
+Conv2d(64 → 128), BatchNorm, ReLU, MaxPool
+
+Block 4:
+Conv2d(128 → 256), BatchNorm, ReLU, MaxPool
+
+Classifier:
+AdaptiveAvgPool2d(1 × 1)
+Flatten
+Dropout(0.30)
+Linear(256 → 10)
+```
+
+The channel depth increases as:
+
+```text
+3 → 32 → 64 → 128 → 256
+```
+
+The spatial size decreases as:
+
+```text
+128 × 128 → 64 × 64 → 32 × 32 → 16 × 16 → 8 × 8
+```
+
+This means the model gradually reduces image size while increasing feature depth, allowing it to learn stronger visual patterns such as color, shape, shine, and wrinkle texture.
+
+### CustomDateCNN Metadata
+
+| Item                     | Value                                        |
+| ------------------------ | -------------------------------------------- |
+| Model name               | CustomDateCNN                                |
+| Framework                | PyTorch                                      |
+| Pretrained               | No                                           |
+| Transfer learning        | No                                           |
+| Training type            | From scratch                                 |
+| Number of classes        | 10                                           |
+| Input size               | 128 × 128                                    |
+| Main filter size         | 3 × 3                                        |
+| Convolution blocks       | 4                                            |
+| Channel flow             | 3 → 32 → 64 → 128 → 256                      |
+| Classifier               | AdaptiveAvgPool + Flatten + Dropout + Linear |
+| Final output layer       | Linear(256 → 10)                             |
+| Loss function            | CrossEntropyLoss                             |
+| Optimizer                | AdamW                                        |
+| Learning rate            | 0.001                                        |
+| Weight decay             | 0.0001                                       |
+| Scheduler                | ReduceLROnPlateau                            |
+| Total parameters         | 391,946                                      |
+| Trainable parameters     | 391,946                                      |
+| Best validation accuracy | 96.38%                                       |
+| Best epoch               | 14                                           |
+| Final checkpoint         | `checkpoints/best_custom_cnn.pt`             |
 
 ## Results
 
-### Frozen-Backbone Training
+### ResNet-50 Frozen-Backbone Training
 
 Best validation accuracy:
 
@@ -85,7 +201,7 @@ Best validation accuracy:
 88.86%
 ```
 
-### Fine-Tuned Model
+### ResNet-50 Fine-Tuned Model
 
 Best validation accuracy:
 
@@ -105,6 +221,37 @@ Final test loss:
 0.1730
 ```
 
+### CustomDateCNN From Scratch
+
+Best validation accuracy:
+
+```text
+96.38%
+```
+
+Best epoch:
+
+```text
+14
+```
+
+The custom CNN was trained as a baseline comparison model. Although it performed strongly on the validation set, the ResNet-50 model remains important because it uses a deeper pretrained backbone and is expected to generalize better in more diverse real-world conditions.
+
+## Model Comparison
+
+| Feature                  | ResNet-50          | CustomDateCNN        |
+| ------------------------ | ------------------ | -------------------- |
+| Pretrained               | Yes                | No                   |
+| Transfer learning        | Yes                | No                   |
+| Training type            | Fine-tuning        | From scratch         |
+| Input size               | 224 × 224          | 128 × 128            |
+| Architecture depth       | Deep residual CNN  | Simple CNN           |
+| Main feature extractor   | ResNet-50 backbone | 4 custom conv blocks |
+| Final classifier         | Linear(2048 → 10)  | Linear(256 → 10)     |
+| Total parameters         | 23,528,522         | 391,946              |
+| Best validation accuracy | 94.86%             | 96.38%               |
+| Purpose                  | Main model         | Comparison baseline  |
+
 ## Kaggle Dataset + Project Package
 
 The public Kaggle package is available here:
@@ -113,9 +260,11 @@ The public Kaggle package is available here:
 https://www.kaggle.com/datasets/saqibbedar/date-fruit-classification-resnet50
 ```
 
+The Kaggle package includes the dataset, trained checkpoints, source code, split manifest files, and project documentation.
+
 ## Confusion Matrix Observation
 
-The model performs very well on most classes such as Ajwa, Medjool, Shaishe, Aseel, and Fasli-Toto.
+The ResNet-50 model performs very well on most classes such as Ajwa, Medjool, Shaishe, Aseel, and Fasli-Toto.
 
 The most challenging class is **Meneifi**, which is sometimes confused with:
 
@@ -123,7 +272,7 @@ The most challenging class is **Meneifi**, which is sometimes confused with:
 * Sugaey
 * Galaxy
 
-This shows that some date varieties are visually similar and require deeper error analysis or additional data improvement.
+This shows that some date varieties are visually similar and require deeper error analysis, improved data quality, or additional real-world samples.
 
 ## Project Structure
 
@@ -131,11 +280,13 @@ This shows that some date varieties are visually similar and require deeper erro
 date-fruit-classification-resnet50/
 │
 ├── assets/
+│   ├── thumbnail.png
 │   └── resnet_architecture.webp
 │
 ├── checkpoints/
 │   ├── best_resnet50_frozen.pt
-│   └── best_resnet50_finetuned.pt
+│   ├── best_resnet50_finetuned.pt
+│   └── best_custom_cnn.pt
 │
 ├── datasets/
 │   ├── full/
@@ -147,6 +298,14 @@ date-fruit-classification-resnet50/
 │   ├── DATASET_CARD.md
 │   └── dataset-metadata.template.json
 │
+├── kaggle_upload/
+│
+├── reports/
+│   ├── confusion_matrix_test.png
+│   ├── classification_metrics_test.csv
+│   ├── custom_cnn_confusion_matrix_test.png
+│   └── custom_cnn_metrics_test.csv
+│
 ├── scripts/
 │   └── create_kaggle_split_manifest.py
 │
@@ -156,6 +315,7 @@ date-fruit-classification-resnet50/
 ├── app.py
 ├── index.html
 ├── main.ipynb
+├── custom_model.ipynb
 ├── main.py
 ├── pyproject.toml
 ├── requirements-demo-cpu.txt
@@ -230,8 +390,7 @@ The app shows:
 
 This is a closed-set classifier.
 
-That means the model was trained only on 10 known date classes.
-If a non-date image is given, such as a human, car, or screenshot, the neural network will still produce one of the 10 date classes.
+That means the model was trained only on 10 known date classes. If a non-date image is given, such as a human, car, or screenshot, the neural network will still produce one of the 10 date classes.
 
 To reduce this problem, the web app includes:
 
@@ -253,10 +412,16 @@ Unknown / Non-date
 
 ## How to Use the Trained Model
 
-The trained model checkpoint is stored in:
+The main trained ResNet-50 checkpoint is stored in:
 
 ```text
 checkpoints/best_resnet50_finetuned.pt
+```
+
+The custom CNN checkpoint is stored in:
+
+```text
+checkpoints/best_custom_cnn.pt
 ```
 
 The model automatically uses CUDA if available, otherwise CPU:
@@ -273,11 +438,17 @@ This allows training on a GPU machine and running inference on a CPU laptop.
 * PyTorch
 * Torchvision
 * ResNet-50
+* Custom CNN
 * Flask
 * NumPy
 * Pillow
 * Matplotlib
 * Jupyter Notebook
+
+## Course Information
+
+**Course Instructor / Supervisor**
+[Prof. Syed Muhammad Naqi](https://cs.qau.edu.pk/profiles/naqi.htm)
 
 ## Authors
 
