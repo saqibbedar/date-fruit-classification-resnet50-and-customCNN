@@ -1,12 +1,12 @@
 # Date Fruit Classification using ResNet-50 and Custom CNN
 
-![Thumbnail](./assets/thumbnailv2.jpg)
+![Thumbnail](https://raw.githubusercontent.com/saqibbedar/date-fruit-classification-resnet50-and-customCNN/refs/heads/main/assets/thumbnailv2.jpg)
 
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?logo=github)](https://github.com/saqibbedar/date-fruit-classification-resnet50)
-[![Kaggle](https://img.shields.io/badge/Kaggle-Dataset-20BEFF?logo=kaggle\&logoColor=white)](https://www.kaggle.com/datasets/saqibbedar/date-fruit-classification-resnet50)
-![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python\&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-Deep%20Learning-EE4C2C?logo=pytorch\&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-Web%20App-000000?logo=flask\&logoColor=white)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?logo=github)](https://github.com/saqibbedar/date-fruit-classification-resnet50-and-customCNN)
+[![Kaggle](https://img.shields.io/badge/Kaggle-Dataset-20BEFF?logo=kaggle&logoColor=white)](https://www.kaggle.com/datasets/saqibbedar/date-fruit-classification-resnet50)
+![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-Deep%20Learning-EE4C2C?logo=pytorch&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-Web%20App-000000?logo=flask&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Academic%20Project-brightgreen)
 
 A computer vision project for classifying date fruit varieties using **ResNet-50 transfer learning** and a **custom CNN model trained from scratch** with **PyTorch**.
@@ -17,16 +17,16 @@ The project includes dataset preparation, model training, fine-tuning, custom mo
 
 This project classifies date fruit images into 10 varieties:
 
-* Ajwa
-* Aseel
-* Fasli-Toto
-* Galaxy
-* Medjool
-* Meneifi
-* Nabtat-Ali
-* Shaishe
-* Sokari
-* Sugaey
+- Ajwa
+- Aseel
+- Fasli-Toto
+- Galaxy
+- Medjool
+- Meneifi
+- Nabtat-Ali
+- Shaishe
+- Sokari
+- Sugaey
 
 The main model uses **ResNet-50 transfer learning** with ImageNet pretrained weights. The original ResNet-50 classifier was replaced with a new 10-class classifier for date fruit classification.
 
@@ -42,19 +42,19 @@ This work shows how deep learning can support agricultural image classification 
 
 ## Features
 
-* ResNet-50 transfer learning
-* Frozen-backbone baseline training
-* Fine-tuning of ResNet `layer4`
-* Custom CNN model trained from scratch
-* Comparison between pretrained and non-pretrained models
-* Train/validation/test split
-* Image preprocessing and augmentation
-* Confusion matrix evaluation
-* Precision, recall, and F1-score analysis
-* Flask web app for image upload and prediction
-* Confidence thresholding
-* Basic date-like image precheck for rejecting obvious non-date inputs
-* Kaggle dataset and project package
+- ResNet-50 transfer learning
+- Frozen-backbone baseline training
+- Fine-tuning of ResNet `layer4`
+- Custom CNN model trained from scratch
+- Comparison between pretrained and non-pretrained models
+- Train/validation/test split
+- Image preprocessing and augmentation
+- Confusion matrix evaluation
+- Precision, recall, and F1-score analysis
+- Flask web app for image upload and prediction
+- Confidence thresholding
+- Basic date-like image precheck for rejecting obvious non-date inputs
+- Kaggle dataset and project package
 
 ## Dataset
 
@@ -71,20 +71,20 @@ Each class contains 700 images.
 
 Dataset split:
 
-* 70% training
-* 15% validation
-* 15% testing
+- 70% training
+- 15% validation
+- 15% testing
 
 ## Model 1: ResNet-50 Transfer Learning
 
 Architecture:
 
-* Backbone: ResNet-50
-* Pretrained weights: ImageNet
-* Transfer learning: Yes
-* Input size: 224 × 224 RGB image
-* Original classifier: `Linear(2048, 1000)`
-* Modified classifier head:
+- Backbone: ResNet-50
+- Pretrained weights: ImageNet
+- Transfer learning: Yes
+- Input size: 224 × 224 RGB image
+- Original classifier: `Linear(2048, 1000)`
+- Modified classifier head:
 
 ```python
 Dropout(p=0.30)
@@ -268,19 +268,19 @@ The ResNet-50 model performs very well on most classes such as Ajwa, Medjool, Sh
 
 The most challenging class is **Meneifi**, which is sometimes confused with:
 
-* Medjool
-* Sugaey
-* Galaxy
+- Medjool
+- Sugaey
+- Galaxy
 
 This shows that some date varieties are visually similar and require deeper error analysis, improved data quality, or additional real-world samples.
 
 ## Project Structure
 
 ```text
-date-fruit-classification-resnet50/
+date-fruit-classification-resnet50-and-customcnn/
 │
 ├── assets/
-│   ├── thumbnail.png
+│   ├── thumbnailv2.jpg
 │   └── resnet_architecture.webp
 │
 ├── checkpoints/
@@ -298,8 +298,6 @@ date-fruit-classification-resnet50/
 │   ├── DATASET_CARD.md
 │   └── dataset-metadata.template.json
 │
-├── kaggle_upload/
-│
 ├── reports/
 │   ├── confusion_matrix_test.png
 │   ├── classification_metrics_test.csv
@@ -310,12 +308,15 @@ date-fruit-classification-resnet50/
 │   └── create_kaggle_split_manifest.py
 │
 ├── static/
-│   └── uploads/              # ignored, generated by Flask app
+│   └── uploads/              # generated by Flask app
 │
+├── .gitattributes
+├── .gitignore
 ├── app.py
+├── conda_config_cmds.txt
+├── custom_model.ipynb
 ├── index.html
 ├── main.ipynb
-├── custom_model.ipynb
 ├── main.py
 ├── pyproject.toml
 ├── requirements-demo-cpu.txt
@@ -323,11 +324,23 @@ date-fruit-classification-resnet50/
 └── README.md
 ```
 
-## Installation
+## Installation and Configuration
 
-### Option 1: CPU Demo Setup
+The project can be configured in different ways depending on the system. A simple CPU setup is enough for running the Flask demo, while GPU setup is recommended for training and retraining the models.
 
-Use this option on a laptop without GPU.
+### Clone Repository
+
+Clone the repository and open it in your desired IDE.
+
+```bash
+git clone https://github.com/saqibbedar/date-fruit-classification-resnet50-and-customCNN.git
+```
+
+### Option 1: Python `venv` Setup for CPU Demo
+
+Use this option on a laptop or system without NVIDIA GPU. This setup is suitable for running the trained model through the Flask web application.
+
+Create virtual environment:
 
 ```bash
 python -m venv .venv
@@ -339,11 +352,21 @@ Activate environment on Windows:
 .\.venv\Scripts\activate
 ```
 
-Install CPU dependencies:
+Upgrade pip:
 
 ```bash
 python -m pip install --upgrade pip
+```
+
+Install CPU version of PyTorch:
+
+```bash
 python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+```
+
+Install required packages:
+
+```bash
 python -m pip install flask numpy pillow matplotlib ipykernel
 ```
 
@@ -359,14 +382,67 @@ Open in browser:
 http://127.0.0.1:5000
 ```
 
-### Option 2: GPU Training Setup
+### Option 2: Miniconda Setup for Local Training and GPU Work
 
-Use this option on a system with NVIDIA GPU and CUDA-supported PyTorch.
+Miniconda is recommended for local development because it is lightweight compared to the full Anaconda distribution. It is a good option for GPU-based PyTorch training, Jupyter Notebook work, and managing separate project environments.
+
+Create a new conda environment:
+
+```bash
+conda create -n datefruit-cv python=3.12 -y
+```
+
+Activate the environment:
+
+```bash
+conda activate datefruit-cv
+```
+
+Install CUDA-supported PyTorch:
 
 ```bash
 python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+```
+
+Install remaining project dependencies:
+
+```bash
 python -m pip install flask numpy pillow matplotlib ipykernel
 ```
+
+Register the environment as a Jupyter kernel:
+
+```bash
+python -m ipykernel install --user --name datefruit-cv --display-name "Python (datefruit-cv)"
+```
+
+Run the Flask app:
+
+```bash
+python app.py
+```
+
+For additional conda setup, activation, package checking, and GPU verification commands, see:
+
+```text
+conda_config_cmds.txt
+```
+
+### Option 3: Full Anaconda Setup
+
+If Miniconda is not installed, the full Anaconda distribution can also be used. Download Anaconda from the official Anaconda website, install it, open Anaconda Prompt, and then follow the same conda environment commands from Option 2.
+
+This option is easier for beginners because it includes many scientific Python tools by default, but it is larger in size than Miniconda.
+
+### GPU Verification
+
+To confirm whether PyTorch can access the GPU, run:
+
+```bash
+python -c "import torch; print(torch.__version__); print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU only')"
+```
+
+If the output shows `True`, CUDA is available and the model can use the GPU. If it shows `False`, the project can still run on CPU for inference and demo purposes.
 
 ## Running the Web App
 
@@ -380,11 +456,11 @@ Then upload an image using the browser interface.
 
 The app shows:
 
-* predicted class
-* confidence score
-* top-k predictions
-* accepted/rejected decision
-* simple input quality check
+- predicted class
+- confidence score
+- top-k predictions
+- accepted/rejected decision
+- simple input quality check
 
 ## Important Note about Unknown Images
 
@@ -394,8 +470,8 @@ That means the model was trained only on 10 known date classes. If a non-date im
 
 To reduce this problem, the web app includes:
 
-* confidence thresholding
-* simple date-like image precheck
+- confidence thresholding
+- simple date-like image precheck
 
 However, this is not a perfect unknown-object detector.
 
@@ -432,28 +508,35 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 This allows training on a GPU machine and running inference on a CPU laptop.
 
+For detailed local environment and conda commands, see:
+
+```text
+conda_config_cmds.txt
+```
+
 ## Technologies Used
 
-* Python
-* PyTorch
-* Torchvision
-* ResNet-50
-* Custom CNN
-* Flask
-* NumPy
-* Pillow
-* Matplotlib
-* Jupyter Notebook
+- Python
+- PyTorch
+- Torchvision
+- ResNet-50
+- Custom CNN
+- Flask
+- NumPy
+- Pillow
+- Matplotlib
+- Jupyter Notebook
+- Miniconda / Anaconda
 
 ## Course Information
 
-**Course Instructor / Supervisor**
+**Course Instructor / Supervisor**  
 [Prof. Syed Muhammad Naqi](https://cs.qau.edu.pk/profiles/naqi.htm)
 
 ## Authors
 
-* Saqib Bedar
-* Hamza Khan Tariq
+- Saqib Bedar
+- Hamza Khan Tariq
 
 ## License
 
